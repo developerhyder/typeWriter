@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     private int count = 0;
     private Handler handler = new Handler();
     private int i=0;
+    MediaPlayer mp;
     TextView tv;
     String test = "Turn on the sound !!! Ssup people this is one of the ways to emulate a type writer via a text view you can download the source code from my git repository ping me if you want the link to my repository!!!";
     @Override
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv = (TextView)findViewById(R.id.textView0);
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.k4);
+        mp = MediaPlayer.create(this, R.raw.k4);
         somee(mp);
     }
     private void somee(final MediaPlayer mp) {
@@ -58,5 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        if (!hasFocus){
+            mp.stop();
+        }
+        super.onWindowFocusChanged(hasFocus);
+    }
 }
